@@ -59,7 +59,7 @@ data['End of Week'] = data['Start of Week'] + pd.to_timedelta(6, unit='d')
 # Obtenir les dates de début et de fin pour chaque semaine
 weekly_dates = data.groupby('week').agg({'Start of Week':'min', 'End of Week':'max'}).reset_index()
 
-# Formater les dates pour qu'elles apparaissent comme 'Semaine 8 (01/01/2024 - 07/01/2024)'
+# Formater les dates pour qu'elles appparaissent comme 'Semaine 8 (01/01/2024 - 07/01/2024)'
 semaines_options = [
     {
         'label': f"Semaine {row['week']} ({row['Start of Week'].strftime('%d/%m/%Y')} - {row['End of Week'].strftime('%d/%m/%Y')})",
@@ -67,12 +67,12 @@ semaines_options = [
     }
     for _, row in weekly_dates.iterrows()
 ]
-# Initialisation de l'application Dash
-app = Dash(__name__)
+# Initialisation de l'appplication Dash
+appp = Dash(__name__)
 
 # Style de l'encadrement extérieur et des couleurs de la page
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']  # URL de la feuille de style externe
-app = Dash(__name__, external_stylesheets=external_stylesheets)
+appp = Dash(__name__, external_stylesheets=external_stylesheets)
 
 # Création des graphiques avec Plotly
 fig_suivi = go.Figure([go.Bar(x=taux_suivi_planning_weekly.index, y=taux_suivi_planning_weekly.values)])
@@ -89,8 +89,8 @@ fig_cout.update_layout(title='Coût horaire par semaine', xaxis_title='Semaine',
 
 # Création de la liste des options pour le dropdown, basée sur les semaines disponibles
 dropdown_options = [{'label': f"Semaine {week}", 'value': week} for week in taux_suivi_planning_weekly.index]
-# Ajout des graphiques à l'application Dash
-app.layout = html.Div(style={'backgroundColor': '#f9f9f9'}, children=[
+# Ajout des graphiques à l'appplication Dash
+appp.layout = html.Div(style={'backgroundColor': '#f9f9f9'}, children=[
     html.Div([
         html.Img(src='https://atalian.fr/wp-content/uploads/sites/4/2013/05/atalian-logo.png', style={'height': '130px', 'width': 'auto'})
     ], style={'textAlign': 'center', 'margin-bottom': '20px'}),
@@ -118,7 +118,7 @@ app.layout = html.Div(style={'backgroundColor': '#f9f9f9'}, children=[
 ])
 
 # Assumons que vos callbacks sont défi
-@app.callback(
+@appp.callback(
     [Output('gauge-taux-suivi', 'figure'),
      Output('gauge-taux-completion', 'figure')],
     [Input('week-dropdown', 'value')]
@@ -169,4 +169,4 @@ def update_gauges(selected_week):
     return fig_gauge_suivi, fig_gauge_completion
 
 if __name__ == '__main__':
-    app.run_server(debug=True, port=8050)
+    appp.run_server(debug=True, port=8050)
