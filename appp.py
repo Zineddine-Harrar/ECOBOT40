@@ -13,7 +13,7 @@ from dash import Dash, dcc, html, Input, Output
 import plotly.graph_objects as go
 
 # Chargement du fichier Excel
-file_path = 'C:/Users/zined/Downloads/TaskReport_GS142-0120-G2N-0001_20240318102004.xlsx'  # Remplacez par le chemin réel du fichier
+file_path = 'TaskReport_GS142-0120-G2N-0001_20240318102004.xlsx'  # Remplacez par le chemin réel du fichier
 data = pd.read_excel(file_path)
 
 # Nettoyage des données
