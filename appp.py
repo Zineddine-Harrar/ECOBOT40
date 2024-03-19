@@ -69,6 +69,7 @@ semaines_options = [
 ]
 # Initialisation de l'appplication Dash
 appp = Dash(__name__)
+server = appp.server
 
 # Style de l'encadrement extérieur et des couleurs de la page
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']  # URL de la feuille de style externe
